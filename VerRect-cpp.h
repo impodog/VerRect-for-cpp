@@ -77,12 +77,13 @@ public:
 	Pos_Like clearacc;
 	Pos_Like acc;
 	bool gravity_switch;
+	SpVR();
 	SpVR(Pos start, Pos end, bool followable = false, bool gravity=true,float density=1);
 	void cspeed(Pos_Like speed);
 	void cacc(Pos_Like acc);
 	void stop(Pos_Like target);
-	void stopx(float target=0.0f);
-	void stopy(float target=0.0f);
+	void stopx(float target=0);
+	void stopy(float target=0);
 	void accless_stopx();
 	void accless_stopy();
 	void acc_stopx();
@@ -100,6 +101,7 @@ public:
 };
 class player_SpVR :public SpVR {
 public:
+	player_SpVR(Pos start, Pos end, bool followable = false, bool gravity=true,float density=1);
 	void lrudt(VerRect *rect, bool *result);
 	void lrudt_olrud(VerRect *rect,bool *result);
 	void round_lrudt(VerRect *rect, bool *result, Pos_Like oppspeed);

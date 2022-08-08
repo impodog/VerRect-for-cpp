@@ -10,7 +10,7 @@
 
 Pos_Like grav;
 float airfriction;
-string __version__ = "1.0.1";
+string __version__ = "1.0.2";
 float INF = (float)3.40282e+038;
 
 
@@ -285,8 +285,11 @@ void dire::absolute(Pos point) {
 	this->end = sgo(this->start, this->end, point);
 	this->start = point;
 }
+SpVR::SpVR(){
+	this->SpVR::SpVR(create_Pos(0,0),create_Pos(0,0));
+}
 SpVR::SpVR(Pos start, Pos end, bool followable, bool gravity, float density) {
-	SpVR::VerRect(start, end, followable);
+	this->VerRect::VerRect(start, end, followable);
 	this->speed = create_Pos(0.0f, 0.0f);
 	this->density = density;
 	this->xface = this->differed.y / 100;
@@ -391,6 +394,9 @@ bool SpVR::has_no_speed() { return this->has_no_verspeed() && this->has_no_horis
 bool SpVR::has_no_verspeed() { return abs(this->speed.y) <= 0.01; }
 bool SpVR::has_no_horispeed() { return abs(this->speed.x) <= 0.01; }
 bool SpVR::has_no_acc() { return (this->acc.x == 0) && (this->acc.y == 0); }
+player_SpVR::player_SpVR(Pos start, Pos end, bool followable, bool gravity, float density){
+	this->SpVR::SpVR(start,end,followable,gravity,density);
+}
 void player_SpVR::lrudt(VerRect* rect,bool *result) {
 	//At least 4 space
 	result[0] = (rect->start.x - this->differed.x < this->start.x) && (this->start.x < rect->start.x);
